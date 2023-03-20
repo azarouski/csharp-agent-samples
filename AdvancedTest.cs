@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Collections.Generic;
 using NLog;
 using NUnit.Framework;
 using RestSharp;

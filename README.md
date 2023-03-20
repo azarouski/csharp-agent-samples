@@ -6,16 +6,19 @@ Your guide to run the first C# NUnit test with reporting to Zebrunner.
 ---
 
 <!-- TOC -->
+
 * [csharp-agent-samples](#csharp-agent-samples)
-  * [Prerequisites](#prerequisites)
-  * [Configuration](#configuration)
-    * [_Step 1: Setup your authentication_](#step-1-setup-your-authentication)
-    * [_Step 2: Select project for your launches_](#step-2-select-project-for-your-launches)
-    * [_Step 3: Configure your system if needed_](#step-3-configure-your-system-if-needed)
-    * [_Step 4: Configure your environment_](#step-4-configure-your-environment)
-    * [_Step 5: Build the project_](#step-5-build-the-project)
-    * [_Step 6: Initiate source_](#step-6-initiate-source)
-    * [_Step 7: Run sample test_](#step-7-run-sample-test)
+    * [Prerequisites](#prerequisites)
+    * [Configuration](#configuration)
+        * [_Step 1: Setup your authentication_](#step-1-setup-your-authentication)
+        * [_Step 2: Select project for your launches_](#step-2-select-project-for-your-launches)
+        * [_Step 3: Configure your system if needed_](#step-3-configure-your-system-if-needed)
+        * [_Step 4: Clone repo_](#step-4-clone-repo)
+        * [_Step 5: Build the project_](#step-5-build-the-project)
+        * [_Step 6: Configure environment_](#step-6-configure-environment)
+        * [_Step 7: Initiate source_](#step-7-initiate-source)
+        * [_Step 8: Run sample test_](#step-8-run-sample-test)
+
 <!-- TOC -->
 
 ---
@@ -83,7 +86,38 @@ echo Certificates installation finished
 
 </p></details>
 
-### _Step 4: Configure your environment_
+### _Step 4: Clone repo_
+
+Clone repository and move to the projects folder
+
+```
+git clone https://github.com/azarouski/csharp-agent-samples.git
+cd csharp-agent-samples
+```
+
+### _Step 5: Build the project_
+
+- Recover dependencies(packages)
+- Build the project
+
+<details><summary style="font-style: italic; font-weight: bold">On Windows:</summary><p>
+
+```
+dotnet restore --packages packages
+dotnet build
+```
+
+</p></details>
+
+<details><summary style="font-style: italic; font-weight: bold">On Linux and MacOS:</summary><p>
+
+```
+msbuild -t:restore,build /p:RestorePackagesPath=packages
+```
+
+</p></details>
+
+### _Step 6: Configure environment_
 
 Update environment variables values with:
 
@@ -144,29 +178,7 @@ PS1="[Zebrunner-env] $ "
 
 </p></details>
 
-### _Step 5: Build the project_
-
-- Recover dependencies(packages)
-- Build the project
-
-<details><summary style="font-style: italic; font-weight: bold">On Windows:</summary><p>
-
-```
-dotnet restore --packages packages
-dotnet build
-```
-
-</p></details>
-
-<details><summary style="font-style: italic; font-weight: bold">On Linux and MacOS:</summary><p>
-
-```
-msbuild -t:restore,build /p:RestorePackagesPath=packages
-```
-
-</p></details>
-
-### _Step 6: Initiate source_
+### _Step 7: Initiate source_
 
 #### _On Windows:_
 
@@ -177,16 +189,17 @@ You can skip this step
 ```
 source zebrunner-env
 ```
+
 </p></details>
 
-### _Step 7: Run sample test_
+### _Step 8: Run sample test_
 
 Run a sample test with Zebrunner reporting:
 
 <details><summary style="font-style: italic; font-weight: bold">On Windows:</summary><p>
 
 ```
-packages\nunit.consolerunner\3.16.3\tools\nunit3-console.exe bin\Debug\net48\nunit-demo-sample.dll --where name=SimpleTest
+packages\nunit.consolerunner\3.16.3\tools\nunit3-console.exe bin\Debug\net48\csharp-agent-samples.dll --where name=SimpleTest
 ```
 
 </p></details>
@@ -194,14 +207,13 @@ packages\nunit.consolerunner\3.16.3\tools\nunit3-console.exe bin\Debug\net48\nun
 <details><summary style="font-style: italic; font-weight: bold">On Linux and MacOS:</summary><p>
 
 ```
-nunit3-console bin/Debug/net48/nunit-demo-sample.dll --where name=SimpleTest
+nunit3-console bin/Debug/net48/csharp-agent-samples.dll --where name=SimpleTest
 ```
 
 </p></details>
 
 ---
-
 For more information about framework refer to NUnit [documentation](https://docs.nunit.org/).<br>
-For more information about reporting refer to Zebrunner [documentation](https://zebrunner.com/documentation/reporting/nunit/).
-
+For more information about reporting refer to
+Zebrunner [documentation](https://zebrunner.com/documentation/reporting/nunit/).
 ---
